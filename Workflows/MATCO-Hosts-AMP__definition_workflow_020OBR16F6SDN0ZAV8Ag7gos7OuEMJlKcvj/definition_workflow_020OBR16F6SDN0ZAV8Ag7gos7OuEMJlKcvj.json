@@ -1,0 +1,691 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj",
+    "name": "MATCO AMP delete non used hosts",
+    "title": "MATCO AMP delete non used hosts",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Y2lzY29zcGFyazovL3VzL1JPT00vNzMyZDY1NTAtNDRmMy0xMWVkLThhOTItODlhMDVkMGU2NzBl",
+          "scope": "local",
+          "name": "Room ID",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_020SI2LLDQGUE3HTwgwU3bBPzkWlWi9VJzk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "YzE1MjdkNjAtODAyZS00ZDUxLThhMDAtMjNmY2VmMWEyNjc4ZDUyYjI2MjgtZGEy_PF84_a3fed6c8-d5ed-4ebb-a07d-4406b551f101",
+          "scope": "local",
+          "name": "Motomami Bot Token",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_020SGU2H36WQ41YQ8YpgBd4MfDKfp1F0eu8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "ApprovalDelete",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_020SAA6K0OPKS3EIpQp0Nlp8w4WIIj9wmWm",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "DeletedWebex",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_020SA9R24ZT8S79oqJ8bjtWhxMT3ALsKQ2o",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "NotificationWebex",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_020SA9VT0FT3L2UPKZDl79ZoOriX0tfYHXG",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "MATCO AMP delete non used hosts",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "no_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_020OC4O4RXKCV1TKS5XGvBb5bzfjangatl1",
+        "name": "MATCO AMP hosts",
+        "title": "MATCO AMP hosts",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "MATCO AMP hosts",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": true,
+          "target": {
+            "no_target": true
+          },
+          "workflow_id": "definition_workflow_020OBUBTCOOLV0ADiGCdaJ72pjK2QV3Pvh6",
+          "workflow_name": "MATCO AMP hosts without parameters"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_020T2UULM7VG53hvQ4H7T0jwALdR9xFsV4k",
+        "name": "Copy(1)-MATCO AMP hosts",
+        "title": "Copy(1)-MATCO AMP hosts",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "display_name": "Copy(1)-MATCO AMP hosts",
+          "runtime_user": {
+            "target_default": true
+          },
+          "target": {
+            "no_target": true
+          },
+          "workflow_id": "definition_workflow_020T25MBBRVBQ1ztQuhAVVfKE74X1g4jDw8",
+          "workflow_name": "MATCO AMP hosts"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_020SA5OV0EVEE5GQMAKgBmcPbpUMI8Nju0V",
+        "name": "Select from Table",
+        "title": "Select from Delete",
+        "type": "core.selectfromtable",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "columns": [
+            {
+              "column_name": "guid",
+              "column_type": "string"
+            },
+            {
+              "column_name": "hostname",
+              "column_type": "string"
+            },
+            {
+              "column_name": "last_seen",
+              "column_type": "date"
+            }
+          ],
+          "continue_on_failure": false,
+          "display_name": "Select from Delete",
+          "input_table": "$activity.definition_activity_020T2UULM7VG53hvQ4H7T0jwALdR9xFsV4k.output.variable_workflow_020T25MBMKTGP0KvHx9NPJf4noMti7N309W$",
+          "number_of_rows": {
+            "all_rows": true
+          },
+          "persist_output": false,
+          "skip_execution": false,
+          "sorting": {
+            "no_sort": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_020SA5XQ7XNX92mkz4bppYwgqeSMx4RdX3C",
+        "name": "Select from Table",
+        "title": "Select from Notificate",
+        "type": "core.selectfromtable",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "columns": [
+            {
+              "column_name": "guid",
+              "column_type": "string"
+            },
+            {
+              "column_name": "hostname",
+              "column_type": "string"
+            },
+            {
+              "column_name": "days",
+              "column_type": "integer"
+            }
+          ],
+          "continue_on_failure": false,
+          "display_name": "Select from Notificate",
+          "input_table": "$activity.definition_activity_020T2UULM7VG53hvQ4H7T0jwALdR9xFsV4k.output.variable_workflow_020T25MBML7V80p8gTwxvciYCSnOgF1huUf$",
+          "number_of_rows": {
+            "all_rows": true
+          },
+          "persist_output": false,
+          "skip_execution": false,
+          "sorting": {
+            "no_sort": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_020S9WH7TZOY10hxqfDD64ZHxDvns4hGEzj",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_020S9WH851EA80hkX6pv5HmFPVW7Hp8TFo8",
+            "name": "Condition Branch",
+            "title": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": {
+                  "left_operand": "$activity.definition_activity_020SA5OV0EVEE5GQMAKgBmcPbpUMI8Nju0V.output.row_count$",
+                  "operator": "ne",
+                  "right_operand": 0
+                },
+                "operator": "or",
+                "right_operand": {
+                  "left_operand": "$activity.definition_activity_020SA5XQ7XNX92mkz4bppYwgqeSMx4RdX3C.output.row_count$",
+                  "operator": "ne",
+                  "right_operand": 0
+                }
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_020SABPON88DM0xwavALXir6z8Pf1FOBAS2",
+                "name": "For Each",
+                "title": "Delete",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Delete",
+                  "skip_execution": false,
+                  "source_array": "$activity.definition_activity_020SA5OV0EVEE5GQMAKgBmcPbpUMI8Nju0V.output.output_table$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_020SAABAJD9M26HaqoXHo6It4kjZzEZaaNc",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SAA6K0OPKS3EIpQp0Nlp8w4WIIj9wmWm$",
+                          "variable_value_new": "$activity.definition_activity_020SABPON88DM0xwavALXir6z8Pf1FOBAS2.input.source_array[@].hostname$\n$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SAA6K0OPKS3EIpQp0Nlp8w4WIIj9wmWm$"
+                        },
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SA9R24ZT8S79oqJ8bjtWhxMT3ALsKQ2o$",
+                          "variable_value_new": "**ID**: $activity.definition_activity_020SABPON88DM0xwavALXir6z8Pf1FOBAS2.input.source_array[@].guid$\\n**Host**: $activity.definition_activity_020SABPON88DM0xwavALXir6z8Pf1FOBAS2.input.source_array[@].hostname$\\n\\n$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SA9R24ZT8S79oqJ8bjtWhxMT3ALsKQ2o$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_020SAH41JFUZ82EbLACpScsBzk33niIVc3Q",
+                "name": "For Each",
+                "title": "Notificate",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Notificate",
+                  "skip_execution": false,
+                  "source_array": "$activity.definition_activity_020SA5XQ7XNX92mkz4bppYwgqeSMx4RdX3C.output.output_table$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_020SAH41JI8431iZjDvpq0TWPMrItVA05xd",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SA9VT0FT3L2UPKZDl79ZoOriX0tfYHXG$",
+                          "variable_value_new": "**Hostname**: $activity.definition_activity_020SAH41JFUZ82EbLACpScsBzk33niIVc3Q.input.source_array[@].hostname$\\n**Días inactivo**: $activity.definition_activity_020SAH41JFUZ82EbLACpScsBzk33niIVc3Q.input.source_array[@].days$\\n\\n$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SA9VT0FT3L2UPKZDl79ZoOriX0tfYHXG$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_020SF4QW6XCVD6zpWr8q67b6uzpPH2gOvqI",
+                "name": "Create Approval Request",
+                "title": "Create Approval Request",
+                "type": "task.approval_request",
+                "base_type": "activity",
+                "properties": {
+                  "approval_choices": [
+                    "Approve",
+                    "Reject"
+                  ],
+                  "assignees": [
+                    "luz.yong@voseda.com"
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Create Approval Request",
+                  "due_date": {
+                    "is_relative_time": true,
+                    "relative_time": {
+                      "duration": 15,
+                      "time_units": "days"
+                    },
+                    "set_due_date": true
+                  },
+                  "expiration_date": {
+                    "is_relative_time": true,
+                    "relative_time": {
+                      "duration": 15,
+                      "time_units": "days"
+                    }
+                  },
+                  "expiration_status": "Expired",
+                  "minimum_approvals": 1,
+                  "priority": "high",
+                  "skip_execution": false,
+                  "subject_line": "Eliminación de hosts",
+                  "task_message": "Se necesita su aprobación para eliminar los siguientes hosts detectados como inactivos:\\n\n$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SAA6K0OPKS3EIpQp0Nlp8w4WIIj9wmWm$",
+                  "task_owner": "luz.yong@voseda.com",
+                  "task_requestor": "luz.yong@voseda.com"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_020SIG720YOT66jPt4C6OZcvSYTGVjCmpq7",
+                "name": "Webex - Simple Card v3 (One Button)",
+                "title": "Webex - Simple Card v3 (One Button)",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Webex - Simple Card v3 (One Button)",
+                  "input": {
+                    "variable_workflow_01YOGZJTSK4EE3he73Xpuhe7wGnaeGZHmni": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SGU2H36WQ41YQ8YpgBd4MfDKfp1F0eu8$",
+                    "variable_workflow_01YOGZJTSKGDK03ebVdld7Br6gWIdAK8T1s": "Se necesita su aprobación para eliminar hosts inactivos",
+                    "variable_workflow_01YOGZJTSKSGE02V1wui4gWcEhplaLSkq91": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SI2LLDQGUE3HTwgwU3bBPzkWlWi9VJzk$",
+                    "variable_workflow_01YOGZJTSL1HH3q6KlpYCdtxF7r7mAwb4Sh": "Se generó una solicitud de aprobación para eliminar hosts que cumplen con los criterios de inactividad, favor de atenderlo.",
+                    "variable_workflow_01YOGZJTSL8JR0airXUphYL9aft1DRDGAJG": "SecureX - Approval Request for AMP",
+                    "variable_workflow_01YOGZJTSLFSX5coLXRITqlKteLWiZkwUOw": "https://securex-ao.us.security.cisco.com/orch-ui/tasks/$activity.definition_activity_020SF4QW6XCVD6zpWr8q67b6uzpPH2gOvqI.output.task_id$",
+                    "variable_workflow_01YOGZJTSLWO30jwXJWmxDXrZuP1SxTb5XL": "Revisar Solicitud"
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01J5LR4RYGF8G17FIct2UtullgqVVJBcRcC",
+                    "target_type": "web-service.endpoint"
+                  },
+                  "workflow_id": "definition_workflow_01YOGZJTGEWRG0UgRKW7tM39Mb6kE4WYNiN",
+                  "workflow_name": "Webex - Simple Card v3 (One Button)"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_020SF42WOFB5S5yDYn09DSuAgMDp8KJAErM",
+                "name": "Wait For Event",
+                "title": "Wait For Event",
+                "type": "task.wait_for_event",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Wait For Event",
+                  "event_info": {
+                    "add_event": true,
+                    "event_definition": {
+                      "conditions": {
+                        "left_operand": "$output.task_id$",
+                        "operator": "eq",
+                        "right_operand": "$activity.definition_activity_020SF4QW6XCVD6zpWr8q67b6uzpPH2gOvqI.output.task_id$"
+                      }
+                    }
+                  },
+                  "event_timeout": 2580000,
+                  "event_type": "approval_task.event",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_020SF79Y13EGF2lWVX67iKNH6x61EQXlqCY",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_020SF79YC8OG60fj3Azm0qdlSnz5jcU8f0L",
+                    "name": "Condition Branch",
+                    "title": "Condition Branch",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_020SF42WOFB5S5yDYn09DSuAgMDp8KJAErM.output.response$",
+                        "operator": "eq",
+                        "right_operand": "Approve"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "Condition Branch",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_020SITMNUGDBM7SFjBE3bES0jwoxBEoO5sD",
+                        "name": "For Each",
+                        "title": "For Each",
+                        "type": "logic.for_each",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "For Each",
+                          "skip_execution": true,
+                          "source_array": "$activity.definition_activity_020SA5OV0EVEE5GQMAKgBmcPbpUMI8Nju0V.output.output_table$"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_020SIT3HBV25X7DBG4xxT7uTcDebHfQ5PKL",
+                            "name": "HTTP Request",
+                            "title": "HTTP Request",
+                            "type": "web-service.http_request",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "allow_auto_redirect": true,
+                              "allow_headers_redirect": false,
+                              "continue_on_error_status_code": false,
+                              "continue_on_failure": false,
+                              "display_name": "HTTP Request",
+                              "method": "DELETE",
+                              "relative_url": "/v1/computers/$activity.definition_activity_020SITMNUGDBM7SFjBE3bES0jwoxBEoO5sD.input.source_array[@].guid$",
+                              "runtime_user": {
+                                "override_target_runtime_user": true,
+                                "runtime_user_id": "definition_runtime_user_020S9BVRDO63D654dgXOwvsjnZCtlgA5fN0"
+                              },
+                              "skip_execution": true,
+                              "target": {
+                                "override_workflow_target": true,
+                                "target_id": "definition_target_01J5LR3QQ446C65IfjigeoVr40r5usXq96M"
+                              }
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_020SHOU0VJRH71HknpfYDhNxQ9ahEptYHhp",
+                        "name": "Webex - Simple Card v3 (No Button)",
+                        "title": "Webex - Simple Card v3 (No Button)",
+                        "type": "workflow.atomic_workflow",
+                        "base_type": "subworkflow",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Webex - Simple Card v3 (No Button)",
+                          "input": {
+                            "variable_workflow_020SHKSDDQGJ323VyrYd1uTq6Y6fRW7QPOL": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SI2LLDQGUE3HTwgwU3bBPzkWlWi9VJzk$",
+                            "variable_workflow_020SHKSDDQPBT0ttq7xwDk64dAHKUWDLTuQ": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SA9R24ZT8S79oqJ8bjtWhxMT3ALsKQ2o$",
+                            "variable_workflow_020SHKSDDRIO40zFYGusPqWbh8MRu1TRdKj": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SGU2H36WQ41YQ8YpgBd4MfDKfp1F0eu8$",
+                            "variable_workflow_020SHKSDDRRAD4fXNGjuVkZ69rYmmle4fU7": "Se han eliminado los siguientes hosts de AMP detectados como inactivos",
+                            "variable_workflow_020SHKSDDRYOJ59Y74LUxYG1n4LRuki3BZz": "SecureX - Notificación de Eliminados de AMP"
+                          },
+                          "runtime_user": {
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": true,
+                            "target_id": "definition_target_01J5LR4RYGF8G17FIct2UtullgqVVJBcRcC",
+                            "target_type": "web-service.endpoint"
+                          },
+                          "workflow_id": "definition_workflow_020SHKSD5PS6U4DZjXh2vEJQ2WzeRhkkbTr",
+                          "workflow_name": "Webex - Simple Card v3 (No Button)"
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_020SHYYHAXCSS0WXrqj4hA5kabbrgz22Fvq",
+                        "name": "Webex - Simple Card v3 (No Button)",
+                        "title": "Webex - Simple Card v3 (No Button)",
+                        "type": "workflow.atomic_workflow",
+                        "base_type": "subworkflow",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Webex - Simple Card v3 (No Button)",
+                          "input": {
+                            "variable_workflow_020SHKSDDQGJ323VyrYd1uTq6Y6fRW7QPOL": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SI2LLDQGUE3HTwgwU3bBPzkWlWi9VJzk$",
+                            "variable_workflow_020SHKSDDQPBT0ttq7xwDk64dAHKUWDLTuQ": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SA9VT0FT3L2UPKZDl79ZoOriX0tfYHXG$",
+                            "variable_workflow_020SHKSDDRIO40zFYGusPqWbh8MRu1TRdKj": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SGU2H36WQ41YQ8YpgBd4MfDKfp1F0eu8$",
+                            "variable_workflow_020SHKSDDRRAD4fXNGjuVkZ69rYmmle4fU7": "Se ha detectado que los siguientes hosts están próximos a cumplir el lapso de inactividad",
+                            "variable_workflow_020SHKSDDRYOJ59Y74LUxYG1n4LRuki3BZz": "SecureX - Notificación de Inactivos de AMP"
+                          },
+                          "runtime_user": {
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": true,
+                            "target_id": "definition_target_01J5LR4RYGF8G17FIct2UtullgqVVJBcRcC",
+                            "target_type": "web-service.endpoint"
+                          },
+                          "workflow_id": "definition_workflow_020SHKSD5PS6U4DZjXh2vEJQ2WzeRhkkbTr",
+                          "workflow_name": "Webex - Simple Card v3 (No Button)"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_020SF79YP8PP81pFPjDovejvYiK0yFSSGEJ",
+                    "name": "Condition Branch",
+                    "title": "Condition Branch",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_020SF42WOFB5S5yDYn09DSuAgMDp8KJAErM.output.response$",
+                        "operator": "eq",
+                        "right_operand": "Reject"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "Condition Branch",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_020SI0GAPL21Q199COUHY9B3mEYqtWPTevB",
+                        "name": "Webex - Simple Card v3 (No Button)",
+                        "title": "Webex - Simple Card v3 (No Button)",
+                        "type": "workflow.atomic_workflow",
+                        "base_type": "subworkflow",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Webex - Simple Card v3 (No Button)",
+                          "input": {
+                            "variable_workflow_020SHKSDDQGJ323VyrYd1uTq6Y6fRW7QPOL": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SI2LLDQGUE3HTwgwU3bBPzkWlWi9VJzk$",
+                            "variable_workflow_020SHKSDDQPBT0ttq7xwDk64dAHKUWDLTuQ": "\\nPróximos a eliminar:\\n$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SA9VT0FT3L2UPKZDl79ZoOriX0tfYHXG$\\n-------------------------------------------------------------------------------------\\nElementos que cumplen con los criterios y posiblemente no se eliminaron:\\n$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SA9R24ZT8S79oqJ8bjtWhxMT3ALsKQ2o$",
+                            "variable_workflow_020SHKSDDRIO40zFYGusPqWbh8MRu1TRdKj": "$workflow.definition_workflow_020OBR16F6SDN0ZAV8Ag7gos7OuEMJlKcvj.local.variable_workflow_020SGU2H36WQ41YQ8YpgBd4MfDKfp1F0eu8$",
+                            "variable_workflow_020SHKSDDRRAD4fXNGjuVkZ69rYmmle4fU7": "Se ha detectado que los siguientes hosts están próximos a cumplir el lapso de inactividad o lo han cumplido y no se han eliminado",
+                            "variable_workflow_020SHKSDDRYOJ59Y74LUxYG1n4LRuki3BZz": "SecureX - Notificación de Actividad de AMP"
+                          },
+                          "runtime_user": {
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": true,
+                            "target_id": "definition_target_01J5LR4RYGF8G17FIct2UtullgqVVJBcRcC",
+                            "target_type": "web-service.endpoint"
+                          },
+                          "workflow_id": "definition_workflow_020SHKSD5PS6U4DZjXh2vEJQ2WzeRhkkbTr",
+                          "workflow_name": "Webex - Simple Card v3 (No Button)"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01J5LR3QQ446C65IfjigeoVr40r5usXq96M": {
+      "unique_name": "definition_target_01J5LR3QQ446C65IfjigeoVr40r5usXq96M",
+      "name": "AMP_Target",
+      "title": "AMP_Target",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01J5LR2RNWJSU29sq6EFLiQaTQguFiaDxhy",
+        "description": "AMP_Target",
+        "disable_certificate_validation": false,
+        "display_name": "AMP_Target",
+        "host": "api.amp.cisco.com",
+        "no_runtime_user": false,
+        "port": 443,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01J5LR4RYGF8G17FIct2UtullgqVVJBcRcC": {
+      "unique_name": "definition_target_01J5LR4RYGF8G17FIct2UtullgqVVJBcRcC",
+      "name": "Webex Teams",
+      "title": "Webex Teams",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "description": "Webex Teams",
+        "disable_certificate_validation": false,
+        "display_name": "Webex Teams",
+        "host": "webexapis.com",
+        "no_runtime_user": true,
+        "port": 443,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01J5LR2RNWJSU29sq6EFLiQaTQguFiaDxhy": {
+      "unique_name": "definition_runtime_user_01J5LR2RNWJSU29sq6EFLiQaTQguFiaDxhy",
+      "name": "AMP_Credentials",
+      "title": "AMP_Credentials",
+      "description": "Account Key for AMP",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "Basic",
+        "basic_password": "*****",
+        "basic_username": "971d268926852098dc9a",
+        "display_name": "AMP_Credentials"
+      }
+    },
+    "definition_runtime_user_020S9BVRDO63D654dgXOwvsjnZCtlgA5fN0": {
+      "unique_name": "definition_runtime_user_020S9BVRDO63D654dgXOwvsjnZCtlgA5fN0",
+      "name": "AMP MATCO credentials",
+      "title": "AMP MATCO credentials",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "Basic",
+        "basic_password": "*****",
+        "basic_username": "5bdc0fd20f7b45862a15",
+        "display_name": "AMP MATCO credentials"
+      }
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01YOGZJTGEWRG0UgRKW7tM39Mb6kE4WYNiN",
+    "definition_workflow_020SHKSD5PS6U4DZjXh2vEJQ2WzeRhkkbTr",
+    "definition_workflow_020OBUBTCOOLV0ADiGCdaJ72pjK2QV3Pvh6",
+    "definition_workflow_020T25MBBRVBQ1ztQuhAVVfKE74X1g4jDw8"
+  ],
+  "dependent_workflows": [
+    "definition_workflow_020OBUBTCOOLV0ADiGCdaJ72pjK2QV3Pvh6",
+    "definition_workflow_020T25MBBRVBQ1ztQuhAVVfKE74X1g4jDw8",
+    "definition_workflow_01YOGZJTGEWRG0UgRKW7tM39Mb6kE4WYNiN",
+    "definition_workflow_020SHKSD5PS6U4DZjXh2vEJQ2WzeRhkkbTr"
+  ]
+}
