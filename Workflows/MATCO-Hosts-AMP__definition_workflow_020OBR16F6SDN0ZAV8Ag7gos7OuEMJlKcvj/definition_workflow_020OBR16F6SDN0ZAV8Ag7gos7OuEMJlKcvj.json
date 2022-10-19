@@ -9,19 +9,6 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "Y2lzY29zcGFyazovL3VzL1JPT00vNzMyZDY1NTAtNDRmMy0xMWVkLThhOTItODlhMDVkMGU2NzBl",
-          "scope": "local",
-          "name": "Room ID",
-          "type": "datatype.string",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_020SI2LLDQGUE3HTwgwU3bBPzkWlWi9VJzk",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
           "value": "YzE1MjdkNjAtODAyZS00ZDUxLThhMDAtMjNmY2VmMWEyNjc4ZDUyYjI2MjgtZGEy_PF84_a3fed6c8-d5ed-4ebb-a07d-4406b551f101",
           "scope": "local",
           "name": "Motomami Bot Token",
@@ -30,19 +17,6 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_020SGU2H36WQ41YQ8YpgBd4MfDKfp1F0eu8",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "ApprovalDelete",
-          "type": "datatype.string",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_020SAA6K0OPKS3EIpQp0Nlp8w4WIIj9wmWm",
         "object_type": "variable_workflow"
       },
       {
@@ -70,6 +44,32 @@
         },
         "unique_name": "variable_workflow_020SA9VT0FT3L2UPKZDl79ZoOriX0tfYHXG",
         "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Y2lzY29zcGFyazovL3VzL1JPT00vNzMyZDY1NTAtNDRmMy0xMWVkLThhOTItODlhMDVkMGU2NzBl",
+          "scope": "local",
+          "name": "Room ID",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_020SI2LLDQGUE3HTwgwU3bBPzkWlWi9VJzk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "ApprovalDelete",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_020SAA6K0OPKS3EIpQp0Nlp8w4WIIj9wmWm",
+        "object_type": "variable_workflow"
       }
     ],
     "properties": {
@@ -88,7 +88,7 @@
     "object_type": "definition_workflow",
     "actions": [
       {
-        "unique_name": "definition_activity_020OC4O4RXKCV1TKS5XGvBb5bzfjangatl1",
+        "unique_name": "definition_activity_020T2UULM7VG53hvQ4H7T0jwALdR9xFsV4k",
         "name": "MATCO AMP hosts",
         "title": "MATCO AMP hosts",
         "type": "workflow.atomic_workflow",
@@ -99,26 +99,7 @@
           "runtime_user": {
             "target_default": true
           },
-          "skip_execution": true,
-          "target": {
-            "no_target": true
-          },
-          "workflow_id": "definition_workflow_020OBUBTCOOLV0ADiGCdaJ72pjK2QV3Pvh6",
-          "workflow_name": "MATCO AMP hosts without parameters"
-        },
-        "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_020T2UULM7VG53hvQ4H7T0jwALdR9xFsV4k",
-        "name": "Copy(1)-MATCO AMP hosts",
-        "title": "Copy(1)-MATCO AMP hosts",
-        "type": "workflow.atomic_workflow",
-        "base_type": "subworkflow",
-        "properties": {
-          "display_name": "Copy(1)-MATCO AMP hosts",
-          "runtime_user": {
-            "target_default": true
-          },
+          "skip_execution": false,
           "target": {
             "no_target": true
           },
@@ -677,13 +658,11 @@
     }
   },
   "atomic_workflows": [
+    "definition_workflow_020T25MBBRVBQ1ztQuhAVVfKE74X1g4jDw8",
     "definition_workflow_01YOGZJTGEWRG0UgRKW7tM39Mb6kE4WYNiN",
-    "definition_workflow_020SHKSD5PS6U4DZjXh2vEJQ2WzeRhkkbTr",
-    "definition_workflow_020OBUBTCOOLV0ADiGCdaJ72pjK2QV3Pvh6",
-    "definition_workflow_020T25MBBRVBQ1ztQuhAVVfKE74X1g4jDw8"
+    "definition_workflow_020SHKSD5PS6U4DZjXh2vEJQ2WzeRhkkbTr"
   ],
   "dependent_workflows": [
-    "definition_workflow_020OBUBTCOOLV0ADiGCdaJ72pjK2QV3Pvh6",
     "definition_workflow_020T25MBBRVBQ1ztQuhAVVfKE74X1g4jDw8",
     "definition_workflow_01YOGZJTGEWRG0UgRKW7tM39Mb6kE4WYNiN",
     "definition_workflow_020SHKSD5PS6U4DZjXh2vEJQ2WzeRhkkbTr"
