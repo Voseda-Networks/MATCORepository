@@ -9,14 +9,14 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": ".",
+          "value": "Y2lzY29zcGFyazovL3VzL1JPT00vNzMyZDY1NTAtNDRmMy0xMWVkLThhOTItODlhMDVkMGU2NzBl",
           "scope": "local",
-          "name": "DeletedWebex",
+          "name": "Room ID",
           "type": "datatype.string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_020SIR5FMUGZ61R9BMROPpzGxIaqAI7v77q",
+        "unique_name": "variable_workflow_020SIR5FMU8KW6chNOLgp3wR7pHlITeXNqA",
         "object_type": "variable_workflow"
       },
       {
@@ -35,19 +35,6 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "YzE1MjdkNjAtODAyZS00ZDUxLThhMDAtMjNmY2VmMWEyNjc4ZDUyYjI2MjgtZGEy_PF84_a3fed6c8-d5ed-4ebb-a07d-4406b551f101",
-          "scope": "local",
-          "name": "Motomami Bot Token",
-          "type": "datatype.string",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_020SIR5FMUQRP6QpKFjcpErFHswbIkjgypf",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
           "value": "",
           "scope": "local",
           "name": "NotificationWebex",
@@ -61,14 +48,27 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "Y2lzY29zcGFyazovL3VzL1JPT00vNzMyZDY1NTAtNDRmMy0xMWVkLThhOTItODlhMDVkMGU2NzBl",
+          "value": "YzE1MjdkNjAtODAyZS00ZDUxLThhMDAtMjNmY2VmMWEyNjc4ZDUyYjI2MjgtZGEy_PF84_a3fed6c8-d5ed-4ebb-a07d-4406b551f101",
           "scope": "local",
-          "name": "Room ID",
+          "name": "Motomami Bot Token",
           "type": "datatype.string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_020SIR5FMU8KW6chNOLgp3wR7pHlITeXNqA",
+        "unique_name": "variable_workflow_020SIR5FMUQRP6QpKFjcpErFHswbIkjgypf",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": ".",
+          "scope": "local",
+          "name": "DeletedWebex",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_020SIR5FMUGZ61R9BMROPpzGxIaqAI7v77q",
         "object_type": "variable_workflow"
       }
     ],
@@ -422,6 +422,48 @@
                     "object_type": "definition_activity",
                     "actions": [
                       {
+                        "unique_name": "definition_activity_020UQEPMMQCL743zkrFq2j1P5YEh0HWwUMv",
+                        "name": "For Each",
+                        "title": "For Each",
+                        "type": "logic.for_each",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "For Each",
+                          "skip_execution": true,
+                          "source_array": "$activity.definition_activity_020SIR5L6PMMK5aZbStHiZRYvhyiR8Aums2.output.output_table$"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_020UQDIIM3UIA6vbmXzzanaAhL0LrBxAxeq",
+                            "name": "HTTP Request",
+                            "title": "HTTP Request",
+                            "type": "web-service.http_request",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "allow_auto_redirect": true,
+                              "allow_headers_redirect": false,
+                              "continue_on_error_status_code": false,
+                              "continue_on_failure": false,
+                              "display_name": "HTTP Request",
+                              "method": "DELETE",
+                              "relative_url": "/organizations/{organizationId}/roamingcomputers/$activity.definition_activity_020UQEPMMQCL743zkrFq2j1P5YEh0HWwUMv.input.source_array[@].guid$",
+                              "runtime_user": {
+                                "target_default": true
+                              },
+                              "skip_execution": true,
+                              "target": {
+                                "override_workflow_target": true,
+                                "target_id": "definition_target_01WYDABA6I2V07Fp8YRFGzftU8trrP92XzY"
+                              }
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      },
+                      {
                         "unique_name": "definition_activity_020SIR6KB3C1P1ineywe4B27VONYBSLej1Y",
                         "name": "Webex - Simple Card v3 (No Button)",
                         "title": "Webex - Simple Card v3 (No Button)",
@@ -561,12 +603,28 @@
         "port": 443,
         "protocol": "https"
       }
+    },
+    "definition_target_01WYDABA6I2V07Fp8YRFGzftU8trrP92XzY": {
+      "unique_name": "definition_target_01WYDABA6I2V07Fp8YRFGzftU8trrP92XzY",
+      "name": "API Umbrella target",
+      "title": "API Umbrella target",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "API Umbrella target",
+        "host": "management.api.umbrella.com",
+        "ignore_proxy": false,
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
     }
   },
   "atomic_workflows": [
-    "definition_workflow_020SHKSD5PS6U4DZjXh2vEJQ2WzeRhkkbTr",
     "definition_workflow_020T4LTU6A8HC60YUDjTsFJFhNxJCRKRYBZ",
-    "definition_workflow_01YOGZJTGEWRG0UgRKW7tM39Mb6kE4WYNiN"
+    "definition_workflow_01YOGZJTGEWRG0UgRKW7tM39Mb6kE4WYNiN",
+    "definition_workflow_020SHKSD5PS6U4DZjXh2vEJQ2WzeRhkkbTr"
   ],
   "dependent_workflows": [
     "definition_workflow_020T4LTU6A8HC60YUDjTsFJFhNxJCRKRYBZ",
